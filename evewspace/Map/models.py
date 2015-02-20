@@ -716,6 +716,11 @@ class Signature(models.Model):
         self.system.clear_sig_cache()
         super(Signature, self).delete(*args, **kwargs)
 
+    def age(self):
+        """Seconds since last modification"""
+        age = datetime.now - self.modified_time
+        return age.seconds
+
 class MapPermission(models.Model):
     """
     Relates a user group to it's map permissions.
