@@ -718,7 +718,7 @@ class Signature(models.Model):
 
     def age(self):
         """Seconds since last modification"""
-        age = datetime.now - self.modified_time
+        age = datetime.now() - self.modified_time
         return age.seconds
 
 class MapPermission(models.Model):
