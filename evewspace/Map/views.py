@@ -38,7 +38,6 @@ from POS.models import POS
 # Permissions are 0 = None, 1 = View, 2 = Change
 # When used without a permission=x specification, requires Change access
 
-
 def require_map_permission(permission=2):
     def _dec(view_func):
         def _view(request, map_id, *args, **kwargs):
