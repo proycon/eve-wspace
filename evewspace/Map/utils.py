@@ -79,11 +79,14 @@ class MapJSONGenerator(object):
     def get_system_icon(self, system):
         """
         Takes a MapSystem and returns the appropriate icon to display on the map
-        as a realative URL.
+        as a relative URL.
         """
         pvp_threshold = self.pvp_threshold
         npc_threshold = self.npc_threshold
         staticPrefix = "%s" % (settings.STATIC_URL + "images/")
+
+        if system.overlaps():
+            return staticPrefix + "overlap.png"
 
         if system.system.stfleets.filter(ended__isnull=True).exists():
             return staticPrefix + "farm.png"
@@ -118,6 +121,7 @@ class MapJSONGenerator(object):
             effect = system.system.wsystem.effect
         else:
             effect = None
+
         if system.parentsystem:
             parentWH = system.parent_wormhole
             if parentWH.collapsed:
