@@ -33,7 +33,8 @@
     {% else %}
     {% endif %}
     </td>
-    <td class="sysname">{{ pos.system.name }}</td>
+    <td class="sysname">{{ pos.system.name }}
+    <td class="sysclass{{pos.system.class}}">{{pos.system.class_string}}</td>
     <td class="posname">{{ pos.posname }}</td>
     <td class="location">P{{ pos.planet }}-M{{ pos.moon }}</td>
     <td class="status">{{ pos.statuslabel }}</td>
