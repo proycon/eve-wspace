@@ -19,7 +19,11 @@
     <th>SMA</th>
 </tr>
 {% for pos in poses %}
+{% if pos.system.id in mapped %}
+<tr class="mapped">
+{% else %}
 <tr>
+{% endif %}
     <td class="corp">{{ pos.corporation.name }} 
     {% if pos.corporation.ticker %}
     [{{pos.corporation.ticker}}]

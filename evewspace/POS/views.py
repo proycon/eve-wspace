@@ -20,6 +20,7 @@ from django.http import HttpResponse, Http404
 from django.template.response import TemplateResponse
 from django.contrib.auth.decorators import login_required, permission_required
 from django.shortcuts import render, get_object_or_404
+from Map.models import MapSystem
 from datetime import datetime, timedelta, time
 import pytz
 import eveapi
@@ -67,8 +68,9 @@ def get_pos_list(request, sysID):
 
 @login_required
 def posdb(request):
+    mapped = [ ms.system.id for ms in MapSystem.objects.all() ]
     poses = POS.objects.all().order_by('corporation__name')
-    return TemplateResponse(request, 'posdb.html',{'poses': poses})
+    return TemplateResponse(request, 'posdb.html',{'poses': poses,'mapped': mapped})
 
 
 @permission_required('POS.change_pos', raise_exception=True)

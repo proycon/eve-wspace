@@ -10,4 +10,6 @@
 #posdb .system {
     font-weight: italic;
 }
-
+#posdb tr.mapped {
+    background: #3c7241;
+}

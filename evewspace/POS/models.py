@@ -16,7 +16,7 @@ from django.db import models
 from core.models import Type, Location
 from API.models import CorpAPIKey
 from core.models import Corporation, Alliance
-from Map.models import System
+from Map.models import System, MapSystem
 from API import cache_handler as handler
 from django.conf import settings
 import pytz
