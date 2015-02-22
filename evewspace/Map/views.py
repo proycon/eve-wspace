@@ -985,8 +985,6 @@ def destination_list(request, map_id, ms_id):
     destinations = Destination.objects.filter(Q(user=None) |
                                               Q(user=request.user))
     map_system = get_object_or_404(MapSystem, pk=ms_id)
-    if not map_id:
-        map_id = map_system.map.id
     try:
         system = KSystem.objects.get(pk=map_system.system.pk)
         rf = utils.RouteFinder()
@@ -1011,7 +1009,7 @@ def destination_list(request, map_id, ms_id):
                             round(rf.ly_distance(system,
                                             destinationsystem), 3),
                             destination.map.name,
-                            "self" if destination.map.id == map_id else "other"
+                            "self" if destination.map.id == map_system.map.id else "other"
                             ))
 
     except ObjectDoesNotExist:
