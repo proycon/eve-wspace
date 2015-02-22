@@ -286,3 +286,15 @@ label {
 #legendDiv ul.inline {
     display: inline;
 }
+div#systemDestinationsDiv {
+    width: 100%;
+}
+div#systemDestinationsDiv .destinationpreset {
+    color: green;
+}
+div#systemDestinationsDiv .destinationself {
+    color: blue;
+}
+div#systemDestinationsDiv .destinationself {
+    font-style: italic;
+}

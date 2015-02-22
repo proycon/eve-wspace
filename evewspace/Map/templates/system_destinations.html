@@ -8,8 +8,8 @@
         <th>Autopilot</th>
         {% endif %}
     </tr>
-    {% for dest, jumps, ly, mapname in destinations %}
-        <tr>
+    {% for dest, jumps, ly, mapname, typeclass in destinations %}
+        <tr class="destination{{typeclass}}">
             <td>{{dest.name}}</td>
             <td>{{jumps}}</td>
             <td>{{ly}}</td>
