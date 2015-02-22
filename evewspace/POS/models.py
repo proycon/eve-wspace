@@ -194,6 +194,18 @@ class POS(models.Model):
         else:
             raise AttributeError('Too many towers detected in the D-Scan!')
 
+    def statuslabel(self):
+        if self.status == 0:
+            return "Unanchored"
+        if self.status == 1:
+            return "Anchored"
+        if self.status == 2:
+            return "Onlining"
+        if self.status == 3:
+            return "Reinforced"
+        if self.status == 4:
+            return "Online"
+
 class CorpPOS(POS):
     """A corp-controlled POS with manager and password data."""
     manager = models.ForeignKey(User, null=True, blank=True, related_name='poses')

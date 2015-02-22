@@ -65,6 +65,11 @@ def get_pos_list(request, sysID):
     return TemplateResponse(request, 'poslist.html', {'system': system,
         'poses': poses})
 
+@login_required
+def posdb(request):
+    poses = POS.objects.all().order_by('corporation__name')
+    return TemplateResponse(request, 'posdb.html',{'poses': poses})
+
 
 @permission_required('POS.change_pos', raise_exception=True)
 def edit_pos(request, sysID, posID):
