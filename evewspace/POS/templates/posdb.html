@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}POS Database{% endblock %}
+{% block scripts %}
+    <link rel="stylesheet" href="{{STATIC_URL}}css/pos.css" type="text/css" />
+{% endblock %}
+{% block content %}
+<div id="posdb">
+<table>
+<tr>
+    <th>Corporation</th>
+    <th>Alliance</th>
+    <th>System</th>
+    <th>POS Name</th>
+    <th>POS Location</th>
+    <th>POS Status</th>
+    <th>Guns</th>
+    <th>Ewar</th>
+    <th>SMA</th>
+</tr>
+{% for pos in poses %}
+<tr>
+    <td>{{ pos.corporation.name }} [{{pos.corporation.ticker}}]</td>
+    <td>
+    {% if pos.corporation.alliance %}
+    {{ pos.corporation.alliance.name }} [{{pos.corporation.alliance.ticker}}]
+    {% else %}
+    {% endif %}
+    </td>
+    <td>{{ pos.system.name }}</td>
+    <td>{{ pos.posname }}</td>
+    <td>P{{ pos.planet }}-M{{ pos.moon }}</td>
+    <td>{{ pos.statuslabel }}</td>
+    <td>{{ pos.guns }}</td>
+    <td>{{ pos.ewar }}</td>
+    <td>{{ pos.sma }}</td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endblock %}
