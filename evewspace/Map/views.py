@@ -999,7 +999,7 @@ def destination_list(request, map_id, ms_id):
                            ))
 
         #Get k-space systems from ALL maps
-        for destination in MapSystem.objects.filter(sysclass__gte=7):
+        for destination in MapSystem.objects.filter(system__sysclass__gte=7):
             destinationsystem = destination.system.ksystem #get the relevant KSystem object
             if system.name != destinationsystem.name and not destinationsystem in [ x[0] for x in result]: #no self and no duplicates
                 result.append((destinationsystem,
