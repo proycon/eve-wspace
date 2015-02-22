@@ -1,4 +1,10 @@
 #posdb table {
     width: 100%;
 }
+#posdb .corp {
+    font-weight: bold;
+}
+#posdb .system {
+    font-weight: italic;
+}
 
