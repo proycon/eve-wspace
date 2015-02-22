@@ -111,6 +111,8 @@ def map_refresh(request, map_id):
     if not request.is_ajax():
         raise PermissionDenied
     current_map = get_object_or_404(Map, pk=map_id)
+
+
     result = [
         datetime.strftime(datetime.now(pytz.utc),
                           "%Y-%m-%d %H:%M:%S.%f"),
@@ -1000,7 +1002,7 @@ def destination_list(request, map_id, ms_id):
                            ))
 
         #Get k-space systems from ALL maps
-        for destination in MapSystem.objects.filter(system__sysclass__gte=7):
+        for destination in MapSystem.objects.filter(system__sysclass__gte=7, system__sysclass__lte=11):
             destinationsystem = destination.system.ksystem #get the relevant KSystem object
             if system.name != destinationsystem.name and not destinationsystem in [ x[0] for x in result]: #no self and no duplicates
                 result.append((destinationsystem,
