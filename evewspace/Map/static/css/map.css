@@ -289,12 +289,12 @@ label {
 div#systemDestinationsDiv {
     width: 100%;
 }
-div#systemDestinationsDiv .destinationpreset {
+div#systemDestinationsDiv tr.destinationpreset td {
     color: green;
 }
-div#systemDestinationsDiv .destinationself {
+div#systemDestinationsDiv tr.destinationself td {
     color: blue;
 }
-div#systemDestinationsDiv .destinationself {
-    font-style: italic;
+div#systemDestinationsDiv tr.destinationother td {
+    font-style: blue;
 }
