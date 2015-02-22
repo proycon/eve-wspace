@@ -1,6 +1,9 @@
 #posdb table {
     width: 100%;
 }
+#posdb table td {
+    max-width: 20%;
+}
 #posdb .corp {
     font-weight: bold;
 }
