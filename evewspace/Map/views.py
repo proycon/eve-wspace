@@ -995,8 +995,22 @@ def destination_list(request, map_id, ms_id):
                            rf.route_length(system,
                                            destination.system) - 1,
                            round(rf.ly_distance(system,
-                                        destination.system), 3)
+                                        destination.system), 3),
+                           "(preset)"
                            ))
+
+        #Get k-space systems from ALL maps
+        for destination in MapSystem.objects.filter(sysclass__gte=7):
+            destinationsystem = destination.system.ksystem #get the relevant KSystem object
+            if system.name != destinationsystem.name and not destinationsystem in [ x[0] for x in result]: #no self and no duplicates
+                result.append((destinationsystem,
+                            rf.route_length(system,
+                                            destinationsystem) - 1,
+                            round(rf.ly_distance(system,
+                                            destinationsystem), 3),
+                            destination.map.name
+                            ))
+
     except ObjectDoesNotExist:
         return HttpResponse()
     return render(request, 'system_destinations.html',
