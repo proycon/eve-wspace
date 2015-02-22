@@ -536,10 +536,10 @@ class MapSystem(models.Model):
         return data
 
     def overlaps(self):
-        return Map.objects.filter(~Q(map__id=self.map.id) & Q(system__id=self.system.id) ).exists()
+        return MapSystem.objects.filter(~Q(map__id=self.map.id) & Q(system__id=self.system.id) ).exists()
 
     def overlapmaps(self):
-        return Map.objects.filter(~Q(map__id=self.map.id) & Q(system__id=self.system.id) )
+        return MapSystem.objects.filter(~Q(map__id=self.map.id) & Q(system__id=self.system.id) )
 
 class Wormhole(models.Model):
     """
