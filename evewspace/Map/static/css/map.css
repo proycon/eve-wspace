@@ -290,11 +290,11 @@ div#systemDestinationsDiv {
     width: 100%;
 }
 div#systemDestinationsDiv tr.destinationpreset td {
-    color: green;
+    color: #40d964;
 }
 div#systemDestinationsDiv tr.destinationself td {
-    color: blue;
+    color: #40c9d9;
 }
 div#systemDestinationsDiv tr.destinationother td {
-    font-style: blue;
+    font-style: italic;
 }
