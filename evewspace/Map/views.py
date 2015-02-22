@@ -1010,7 +1010,7 @@ def destination_list(request, map_id, ms_id):
                             round(rf.ly_distance(system,
                                             destinationsystem), 3),
                             destination.map.name,
-                            "self" if destination.map.id == map_system.map.id else "other"
+                            "self" if destination.map.name == map_system.map.name else "other"
                             ))
 
     except ObjectDoesNotExist:
