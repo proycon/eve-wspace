@@ -996,7 +996,8 @@ def destination_list(request, map_id, ms_id):
                                            destination.system) - 1,
                            round(rf.ly_distance(system,
                                         destination.system), 3),
-                           "(preset)"
+                           "(preset)",
+                           "preset"
                            ))
 
         #Get k-space systems from ALL maps
@@ -1008,7 +1009,8 @@ def destination_list(request, map_id, ms_id):
                                             destinationsystem) - 1,
                             round(rf.ly_distance(system,
                                             destinationsystem), 3),
-                            destination.map.name
+                            destination.map.name,
+                            "self" if destination.map.id == map_id else "other"
                             ))
 
     except ObjectDoesNotExist:
