@@ -27,4 +27,5 @@ syspatterns = patterns('POS.views',
 urlpatterns = patterns('POS.views',
         url(r'(?P<sysID>\d+)/', include(syspatterns)),
         url(r'db/$', 'posdb'),
+        url(r'$','get_post_list'),
         )
