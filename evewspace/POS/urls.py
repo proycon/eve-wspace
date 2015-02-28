@@ -22,7 +22,7 @@ pospatterns = patterns('POS.views',
 syspatterns = patterns('POS.views',
         url(r'(?P<posID>\d+)/', include(pospatterns)),
         url(r'add/$', 'add_pos'),
-        url(r'$','get_post_list'),
+        url(r'$','get_pos_list'),
         )
 
 urlpatterns = patterns('POS.views',
