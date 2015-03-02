@@ -24,21 +24,24 @@
 {% else %}
 <tr>
 {% endif %}
-    <td class="corp">{{ pos.corporation.name }} 
+    <td class="corp"><a href="javascript:CCPEVE.showInfo(2,{{pos.corporation.pk}});">{{ pos.corporation.name }} 
     {% if pos.corporation.ticker %}
     [{{pos.corporation.ticker}}]
     {% endif %}
+    </a>
     </td>
     <td class="alliance">
     {% if pos.corporation.alliance %}
+    <a href="javascript:CCPEVE.showInfo(16159,{{pos.corporation.alliance.pk}});"> 
     {{ pos.corporation.alliance.name }} 
     {% if pos.corporation.alliance.ticker %}
     [{{pos.corporation.alliance.ticker}}]
     {% endif %}
+    </a>
     {% else %}
     {% endif %}
     </td>
-    <td class="sysname">{{ pos.system.name }}
+    <td class="sysname"><a href="javascript:CCPEVE.showInfo(5,{{pos.system.pk}});">{{ pos.system.name }}</a></td>
     <td class="sysclass{{pos.system.class}}">{{pos.system.class_string}}</td>
     <td class="posname">{{ pos.posname }}</td>
     <td class="location">P{{ pos.planet }}-M{{ pos.moon }}</td>
