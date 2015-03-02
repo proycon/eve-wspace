@@ -305,3 +305,7 @@ div#systemDestinationsDiv tr.destinationother td {
     background: yellow;
     padding: 5px;
 }
+.towertype {
+    font-size: 60%;
+    font-style: italic;
+}
