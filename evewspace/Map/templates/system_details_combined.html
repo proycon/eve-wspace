@@ -123,9 +123,11 @@
 </div>
   <a name="sigsPanel"></a>
   <div id="sigsPanel" class="sigsPanel tab-pane">
+            <h4>Signatures: {{system.name}}</h4>
+            <div id="sys{{mapsys.pk}}Signatures" class="signatureListDiv">
+            </div>
             <div id="sigAddPanel" class"sigAddPanel">
                 <div style="margin-bottom: 10px; text-align: center;">
-                    <h4>Signatures: {{system.name}}</h4>
                     {% if can_edit %}
                     <form id="bulkSigForm" class="bulkSigForm" method="post" action="system/{{mapsys.pk}}/signatures/bulkadd/">
                         <textarea id="pasteField" rows="4" name="paste"></textarea>
@@ -144,8 +146,6 @@
                 </div>
                 <div id="sys{{mapsys.pk}}SigAddForm">
                 </div>
-            </div>
-            <div id="sys{{mapsys.pk}}Signatures" class="signatureListDiv">
             </div>
     </div>
     <a name="activePlayerPanel"></a>
