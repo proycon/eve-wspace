@@ -75,7 +75,7 @@
         Towers:
         <ul>
             {% for pos in system.poses.all %}
-            <li>P:{{pos.planet}} &nbsp;M: {{pos.moon}} - {{pos.name}} - <a href="javascript:CCPEVE.showInfo(2,{{pos.corporation.pk}};">{{pos.corporation.name}}</a> - <span class="towertype">{{pos.towertype.name}}</span> -
+            <li>P:{{pos.planet}} &nbsp;M: {{pos.moon}} - {{pos.posname}} - <a href="javascript:CCPEVE.showInfo(2,{{pos.corporation.pk}});">{{pos.corporation.name}}</a> - <span class="towertype">{{pos.towertype.name}}</span> -
                 {% if pos.status == 0 %}
 	            <span class="label label-info">Status: UNANCHORED</span>
 	           	{% endif %}
