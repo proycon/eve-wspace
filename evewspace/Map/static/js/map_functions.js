@@ -98,10 +98,15 @@ $(document).ready(function () {
     });
     updateTimerID = setInterval(doMapAjaxCheckin, 5000);
     if (autoRefresh === true) {
+        $('#btnRefreshToggle').text('Auto Refresh: ON');
         refreshTimerID = setInterval(RefreshMap, 15000);
+    } else {
+        $('#btnRefreshToggle').text('Auto Refresh: OFF');
     }
     if (silentSystem === true) {
         $('#btnSilentAdd').text('Silent IGB Mapping: ON');
+    } else {
+        $('#btnSilentAdd').text('Silent IGB Mapping: OFF');
     }
     if (kspaceIGBMapping === true) {
         $('#btnKspaceIGB').text('Map K-Space Connections: ON');
@@ -120,10 +125,6 @@ $(document).ready(function () {
     }
 });
 
-$(document).ready(function () {
-    $('#mapDiv').html(ajax_image);
-    RefreshMap();
-});
 
 
 //Make sure timers stop when unloading the page
