@@ -83,7 +83,7 @@ class MapJSONGenerator(object):
         static_prefix = "%s" % (settings.STATIC_URL + "images/")
 
         if system.overlaps():
-            return staticPrefix + "overlap.png"
+            return static_prefix + "overlap.png"
 
         if system.system.stfleets.filter(ended__isnull=True).exists():
             return static_prefix + "farm.png"
