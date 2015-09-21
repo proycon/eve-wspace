@@ -179,6 +179,11 @@ class POS(models.Model):
             # odd bug where invalid items get into dscan
             except Type.DoesNotExist:
                 continue
+            except Type.MultipleObjectsReturned:
+                # Some types have multiple records for the same name
+                # When this happens, we will return the first even though
+                # it may not actually be the POS module type.
+                item_type = Type.objects.filter(name=row[1]).all()[0]
             if item_type.marketgroup:
                 group_tree = []
                 parent = item_type.marketgroup

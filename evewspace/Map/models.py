@@ -31,6 +31,26 @@ from django.core.cache import cache
 
 User = settings.AUTH_USER_MODEL
 
+SYSCLASS_MAPPING = {
+        1: 'C1',
+        2: 'C2',
+        3: 'C3',
+        4: 'C4',
+        5: 'C5',
+        6: 'C6',
+        7: 'Highsec',
+        8: 'Lowsec',
+        9: 'Nullsec',
+        10: 'Odd Jove Space',
+        11: 'Odd Jove Space',
+        12: 'Thera',
+        13: 'Small Ship',
+        14: 'Sentinel',
+        15: 'Barbican',
+        16: 'Vidette',
+        17: 'Conflux',
+        18: 'The Redoubt',
+        }
 
 class WormholeType(models.Model):
     """Stores the permanent information on wormhole types.
@@ -66,17 +86,10 @@ class WormholeType(models.Model):
 
         Cx for w-space and H, L, N otherwise.
         """
-        if 7 > self.destination > 0:
-            return "C%s" % (self.destination,)
-        if self.destination == 0:
-            return "Varies"
-        if self.destination == 7:
-            return "High Sec"
-        if self.destination == 8:
-            return "Low Sec"
-        if self.destination == 9:
-            return "Null Sec"
-        return "Unknown"
+        try:
+            return SYSCLASS_MAPPING[self.destination]
+        except KeyError:
+            return "Unknown"
 
 
 class System(SystemData):
@@ -108,23 +121,10 @@ class System(SystemData):
 
     @property
     def class_string(self):
-        if self.sysclass < 7:
-            return 'C%s' % self.sysclass
-        if self.sysclass == 7:
-            return 'Highsec'
-        if self.sysclass == 8:
-            return 'Lowsec'
-        if self.sysclass == 9:
-            return 'Nullsec'
-        # Class 10/11 appear in two Jovian constellations. Reason unknown.
-        if self.sysclass == 10:
-            return 'Odd Jove Space'
-        if self.sysclass == 11:
-            return 'Odd Jove Space'
-        if self.sysclass == 12:
-            return 'Thera'
-        if self.sysclass == 13:
-            return 'Small Ship'
+        try:
+            return SYSCLASS_MAPPING[self.sysclass]
+        except KeyError:
+            return 'Unknown'
 
     def is_kspace(self):
         if self.sysclass in range(7, 12):
@@ -243,7 +243,7 @@ class Map(models.Model):
 
     class Meta:
         permissions = (("map_unrestricted",
-                        "Do not require excplicit access to maps."),
+                        "Do not require explicit access to maps."),
                        ("map_admin", "Access map configuration."),)
 
     def __unicode__(self):
