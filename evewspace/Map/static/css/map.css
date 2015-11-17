@@ -392,6 +392,10 @@ ul#moveDropdown li {
     line-height: 34px;
     color: white;
 }
+.sigSeq {
+    color: #888;
+    font-size: 75%;
+}
 
 .content {
   padding-top: 0;
