@@ -286,9 +286,9 @@ function DisplaySystemDetails(msID, sysID) {
     });
 }
 
-function setEffectTip(effect) {
-    if  ($('#sysEffect')) {
-        var effect = $('#sysEffect').text();
+function setEffectTip() {
+    var effect = $('#sysEffect').text();
+    if  (effect) {
         //var cls = $('#sysClass').text();
         var tip = "";
         var effectcolor = "#aaaaaa"; 
