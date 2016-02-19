@@ -85,6 +85,9 @@ class MapJSONGenerator(object):
         if system.overlaps():
             return static_prefix + "overlap.png"
 
+        if system.system.sysclass == 99:
+            return static_prefix + "scan.png"
+        
         if system.system.stfleets.filter(ended__isnull=True).exists():
             return static_prefix + "farm.png"
 
