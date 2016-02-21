@@ -439,3 +439,13 @@ div.sysClassSpan label {
     padding: 5px;
 }
 
+tr.destinationpreset td {
+    color: #40d964;
+}
+tr.destinationself td {
+    color: #40c9d9;
+}
+tr.destinationother td {
+    font-style: italic;
+}
+

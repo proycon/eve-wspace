@@ -9,7 +9,7 @@
         {% endif %}
     </tr>
     {% for dest, jumps, ly, mapname, typeclass in destinations %}
-        <tr>
+        <tr class="destination{{typeclass}}">
             <td>{{dest.name}}</td>
             <td>{{jumps}}</td>
             <td>{{ly}}</td>
