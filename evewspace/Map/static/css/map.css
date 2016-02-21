@@ -431,3 +431,11 @@ div.sysClassSpan label {
     width: 95%;
 }
 
+.overlapnotice {
+    display: block;
+    font-weight: bold;
+    color: red;
+    background: yellow;
+    padding: 5px;
+}
+

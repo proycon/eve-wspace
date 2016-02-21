@@ -1011,11 +1011,28 @@ def destination_list(request, map_id, ms_id):
         rf = utils.RouteFinder()
         result = []
         for destination in destinations:
-            result.append((
-                destination.system,
-                rf.route_length(system, destination.system) - 1,
-                round(rf.ly_distance(system, destination.system), 3),
-            ))
+            result.append((destination.system,
+                           rf.route_length(system,
+                                           destination.system) - 1,
+                           round(rf.ly_distance(system,
+                                        destination.system), 3),
+                           "(preset)",
+                           "preset"
+                           ))
+
+        #Get k-space systems from ALL maps
+        for destination in MapSystem.objects.filter(system__sysclass__gte=7, system__sysclass__lte=11):
+            destinationsystem = destination.system.ksystem #get the relevant KSystem object
+            if system.name != destinationsystem.name and not destinationsystem in [ x[0] for x in result]: #no self and no duplicates
+                result.append((destinationsystem,
+                            rf.route_length(system,
+                                            destinationsystem) - 1,
+                            round(rf.ly_distance(system,
+                                            destinationsystem), 3),
+                            destination.map.name,
+                            "self" if destination.map.name == map_system.map.name else "other"
+                            ))
+
     except ObjectDoesNotExist:
         return HttpResponse()
     return render(request, 'system_destinations.html',

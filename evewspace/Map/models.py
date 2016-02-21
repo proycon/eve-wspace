@@ -19,6 +19,7 @@ from core.models import SystemData
 from django import forms
 from django.forms import ModelForm
 from datetime import datetime, timedelta
+from django.db.models import Q
 import pytz
 import time
 import yaml
@@ -594,11 +595,17 @@ class MapSystem(models.Model):
         }
         return data
 
+    def overlaps(self):
+        return MapSystem.objects.filter(~Q(map__id=self.map.id) & Q(system__id=self.system.id) ).exists() #TODO: has no regard for permissions
+
     def has_siblings(self):
         parent_sys = self.parentsystem
         if parent_sys is None:
             return False
         return parent_sys.childsystems.count() > 1
+
+    def overlapmaps(self):
+        return MapSystem.objects.filter(~Q(map__id=self.map.id) & Q(system__id=self.system.id) ) #TODO: has no regard for permissions
 
     def distance_from_root(self):
         distance = 0
@@ -609,6 +616,11 @@ class MapSystem(models.Model):
             if parent_sys == None or distance > 100:
                 break
         return distance
+
+    def age(self):
+        """Seconds since last modification"""
+        age = datetime.now() - self.modified_time
+        return age.seconds
 
     def delete_old_sigs(self, user):
         delete_threshold = int(get_config("MAP_AUTODELETE_DAYS", user).value)

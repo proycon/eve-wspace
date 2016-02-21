@@ -31,6 +31,9 @@
 			    </h4>
 			</div>
 			<div id="sysPanelBody" class="panel-body">
+                {% for m in mapsys.overlapmaps %}
+                <span class="overlapnotice">OVERLAPS WITH MAP {{ m.map.name }} !!</span>
+                {% endfor %}
 			    <div class="sysClassSpan" class="row">
 			        {% if system.is_wspace %}
 			        <div class="col-md-3">
